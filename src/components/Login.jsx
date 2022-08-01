@@ -29,8 +29,8 @@ const Login = () => {
   }, [])
 
   return (
-    <Flex justifyContent={'center'} flexDirection={'column'} bgColor={'white'}
-      pt={'100px'} gap={5} alignItems={'center'} as={'form'} onSubmit={handleSubmit} >
+    <Flex height={'100vh'} justifyContent={'center'} flexDirection={'column'} bgColor={'white'}
+      pt={'50px'} gap={5} alignItems={'center'} as={'form'} onSubmit={handleSubmit} >
 
       {/* Heading */}
       <FormControl width={'50%'}>
