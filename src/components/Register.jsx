@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Textarea } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const Register = () => {
     lastname: '',
     username: '',
     password: '',
-    age: 0,
+    age: '',
     phone: '',
     email: '',
     gender: '',
@@ -22,6 +22,36 @@ const Register = () => {
   // setting states
   const [userData, setUserData] = useState(initialValue);
   const [show, setShow] = useState(false);
+  const [formValid, setFormValid] = useState(false);
+
+  //useEffect for validation
+  useEffect(() => {
+    if (
+      userData.firstname !== "" &&
+      userData.lastname !== "" &&
+      userData.username !== "" &&
+      userData.password !== "" &&
+      userData.age !== "" &&
+      userData.email !== "" &&
+      userData.gender !== "" &&
+      userData.tick !== false &&
+      userData.phoneNumber !== ""
+
+    ) {
+      setFormValid(true)
+    } else {
+      setFormValid(false)
+    }
+  }, [userData.firstname,
+  userData.lastname,
+  userData.username,
+  userData.password,
+  userData.age,
+  userData.email,
+  userData.gender,
+  userData.tick,
+  userData.phoneNumber
+  ])
 
   // handlers
   const handleChange = (e) => {
@@ -32,6 +62,7 @@ const Register = () => {
         : value
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     //session storage
@@ -63,26 +94,26 @@ const Register = () => {
       {/* First name */}
       <FormControl width={'50%'}>
         <FormLabel>First Name</FormLabel>
-        <Input type={'text'} name={'firstname'} placeholder={'Enter First Name'} value={userData.firstname} onChange={handleChange} />
+        <Input type={'text'} name={'firstname'} required placeholder={'Enter First Name'} value={userData.firstname} onChange={handleChange} />
       </FormControl>
 
       {/* Last name */}
       <FormControl width={'50%'}>
         <FormLabel>Last Name</FormLabel>
-        <Input type={'text'} name={'lastname'} placeholder={'Enter Last Name'} value={userData.lastname} onChange={handleChange} />
+        <Input type={'text'} name={'lastname'} required placeholder={'Enter Last Name'} value={userData.lastname} onChange={handleChange} />
       </FormControl>
 
       {/* Username */}
       <FormControl width={'50%'}>
         <FormLabel>Username</FormLabel>
-        <Input type={'text'} name={'username'} placeholder={'Enter Username'} value={userData.username} onChange={handleChange} />
+        <Input type={'text'} name={'username'} required placeholder={'Enter Username'} value={userData.username} onChange={handleChange} />
       </FormControl>
 
       {/* Password */}
       <Flex width={'50%'} gap={2}>
         <FormControl width={'86%'}>
           <FormLabel>Password</FormLabel>
-          <Input type={show ? 'text' : 'password'} name={'password'} placeholder={'Enter Password'} value={userData.password} onChange={handleChange} />
+          <Input type={show ? 'text' : 'password'} name={'password'} required placeholder={'Enter Password'} value={userData.password} onChange={handleChange} />
         </FormControl>
         <FormControl width={'12%'}>
           <FormLabel> </FormLabel>
@@ -95,7 +126,7 @@ const Register = () => {
       <Flex width={'50%'} gap={5} >
         <FormControl width={'49%'}>
           <FormLabel>Age</FormLabel>
-          <Input type={'text'} name={'age'} placeholder={'Enter Age'} value={userData.age} onChange={handleChange} />
+          <Input type={'text'} name={'age'} required placeholder={'Enter Age'} value={userData.age} onChange={handleChange} />
         </FormControl>
         <FormControl width={'49%'}>
           <FormLabel>Gender</FormLabel>
@@ -110,25 +141,30 @@ const Register = () => {
       {/* Phone */}
       <FormControl width={'50%'}>
         <FormLabel>Phone</FormLabel>
-        <Input type={'text'} name={'phone'} placeholder={'Enter Phone Number'} value={userData.phone} onChange={handleChange} />
+        <Input type={'text'} name={'phone'} required placeholder={'Enter Phone Number'} value={userData.phone} onChange={handleChange} />
       </FormControl>
 
       {/* Email */}
       <FormControl width={'50%'}>
         <FormLabel>Email</FormLabel>
-        <Input type={'email'} name={'email'} placeholder={'Enter Email address'} value={userData.email} onChange={handleChange} />
+        <Input type={'email'} name={'email'} required placeholder={'Enter Email address'} value={userData.email} onChange={handleChange} />
       </FormControl>
 
       {/* Tick */}
       <FormControl width={'50%'}>
-        <Checkbox type={'checkbox'} name={'tick'} checked={userData.tick} onChange={handleChange} >
+        <Checkbox type={'checkbox'} name={'tick'} required checked={userData.tick} onChange={handleChange} >
           Agree to terms and conditions
         </Checkbox>
       </FormControl>
 
       {/* Submit */}
       <FormControl width={'50%'}>
-        <Button width={'100%'} colorScheme={'facebook'} type={'submit'} onChange={handleChange}>Register</Button>
+        <Button
+          width={'100%'}
+          colorScheme={formValid ? 'facebook' : 'gray'}
+          type={'submit'} >
+          Sign Up
+        </Button>
       </FormControl>
 
     </Flex>

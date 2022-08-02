@@ -11,6 +11,23 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useState({});
+  const [formValid, setFormValid] = useState(false);
+
+  //useEffect for validation
+  useEffect(() => {
+    if (
+      username !== "" &&
+      password !== ""
+    ) {
+      setFormValid(true)
+    } else {
+      setFormValid(false)
+    }
+  }, [
+    username,
+    password
+  ])
+
 
   //submitHandler
   const handleSubmit = (e) => {
@@ -58,7 +75,9 @@ const Login = () => {
       </Flex>
 
       <FormControl width={'50%'}>
-        <Button type={'submit'} colorScheme={'facebook'} width={'100%'} >
+        <Button
+          type={'submit'} colorScheme={formValid ? 'facebook' : 'gray'}
+          width={'100%'} >
           Login
         </Button>
       </FormControl>
