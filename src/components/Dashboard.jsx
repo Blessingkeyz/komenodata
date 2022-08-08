@@ -1,4 +1,4 @@
-import { Button, Flex, Heading } from "@chakra-ui/react";
+import { Button, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,32 +13,41 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <Flex justify={"center"} flexDirection={'column'} align={'center'} height={'100vh'}>
-      <Heading pt={'40px'} >Welcome to your dashboard {user.firstname} {user.lastname} </Heading>
-      <Flex justify={"center"} flexDirection={'column'} align={'center'} height={'100vh'}>
+    <VStack align={'center'}
+      borderRadius={'50'} bgColor={"antiquewhite"}
+      width={''} height={'100vh'}>
+      <Heading pt={'40px'}  >
+        Welcome to your dashboard {user.firstname} {user.lastname} !
+      </Heading>
+
+      <Flex pt={'0px'} justify={"center"}
+        flexDirection={'column'}
+        align={'center'} >
 
         {/* userdetails shown */}
 
-        <h1>
-          Below are the details used in your registration. Make sure you keep these in a safe place
-        </h1>
-        <p> Your first name is {user.firstname} </p>
-        <p> Your last name is {user.lastname} </p>
-        <p> Your username name is {user.firstname} </p>
-        <p> Your password name is {user.password} </p>
-        <p> you are {user.age} years old </p>
-        <p> Your phone number is {user.phone} </p>
-        <p> Your Email adress is {user.email} </p>
-        <p> You are a {user.gender} </p>
+        <Text fontWeight={"semibold"} fontSize={'1.5em'} lineHeight={'1em'} color={'green'}>
+          Below are the details used in your registration.<br /> Make sure you keep these in a safe place
+        </Text>
+        <Text fontSize={'1.5em'} fontFamily={'cursive'} > Your first name is {user.firstname} </Text>
+        <Text fontSize={'1.5em'} fontFamily={'cursive'} > Your last name is {user.lastname} </Text>
+        <Text fontSize={'1.5em'} fontFamily={'cursive'} > Your username name is {user.firstname} </Text>
+        <Text fontSize={'1.5em'} fontFamily={'cursive'} > Your password name is {user.password} </Text>
+        <Text fontSize={'1.5em'} fontFamily={'cursive'} > you are {user.age} years old </Text>
+        <Text fontSize={'1.5em'} fontFamily={'cursive'} > Your phone number is {user.phone} </Text>
+        <Text fontSize={'1.5em'} fontFamily={'cursive'} > Your Email adress is {user.email} </Text>
 
-        <Button colorScheme={'red'} onClick={() => {
-          sessionStorage.removeItem('username');
-          navigate('/login');
-        }} >
+        <Button colorScheme={'red'}
+          onClick={() => {
+            sessionStorage.removeItem('username');
+            navigate('/login');
+          }} >
           Logout
         </Button>
+
       </Flex >
-    </Flex>
+
+    </VStack>
   );
 };
 

@@ -12,7 +12,7 @@ const Nav = () => {
         <NavLink
           to={"/"}
           style={({ isActive }) =>
-            isActive ? { color: "black" } : { color: "#385898" }
+            isActive ? { color: "#385898", fontSize: "1.5em" } : { color: "black" }
           }
         >
           Home
@@ -20,7 +20,7 @@ const Nav = () => {
         <NavLink
           to={"/login"}
           style={({ isActive }) =>
-            isActive ? { color: "black" } : { color: "#385898" }
+            isActive ? { color: "#385898", fontSize: "1.5em" } : { color: "black" }
           }
         >
           Login

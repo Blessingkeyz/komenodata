@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Textarea } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom';
+import { Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Select, Text, Textarea } from '@chakra-ui/react'
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Register = () => {
   //Hooks
@@ -88,7 +88,7 @@ const Register = () => {
       {/* Heading */}
       <FormControl width={'50%'}>
         <Heading color={'#385898'}>Create a Secure Account</Heading>
-        <h2>Welcome to the world of cheap and reliable data services</h2>
+        <Text fontFamily={'cursive'} fontSize={'15px'} >Welcome to the world of cheap and reliable data services</Text>
       </FormControl>
 
       {/* First name */}
@@ -153,7 +153,7 @@ const Register = () => {
       {/* Tick */}
       <FormControl width={'50%'}>
         <Checkbox type={'checkbox'} name={'tick'} required checked={userData.tick} onChange={handleChange} >
-          Agree to terms and conditions
+          <FormLabel>Agree to terms and conditions</FormLabel>
         </Checkbox>
       </FormControl>
 
@@ -165,6 +165,11 @@ const Register = () => {
           type={'submit'} >
           Sign Up
         </Button>
+      </FormControl>
+      <FormControl width={'50%'}>
+        <NavLink to={'/login'}  >
+          <Text fontfamily={'cursive'} >Already have an account? Login</Text>
+        </NavLink>
       </FormControl>
 
     </Flex>

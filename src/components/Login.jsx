@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input } from '@chakra-ui/react'
+import { Button, Flex, Text, FormControl, FormLabel, Heading, Input } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -52,7 +52,7 @@ const Login = () => {
       {/* Heading */}
       <FormControl width={'50%'}>
         <Heading color={'#385898'} >Login to your account</Heading>
-        <h2>Securely login to your Komeno Data account</h2>
+        <Text fontFamily={'cursive'} >Securely login to your Komeno Data account</Text>
       </FormControl>
 
       {/* input fields */}
